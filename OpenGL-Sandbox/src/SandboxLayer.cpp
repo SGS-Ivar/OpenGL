@@ -62,6 +62,7 @@ void SandboxLayer::OnEvent(Event& event)
 	m_CameraController.OnEvent(event);
 
 	EventDispatcher dispatcher(event);
+	dispatcher.Dispatch<MouseMovedEvent>(GLCORE_BIND_EVENT_FN(SandboxLayer::MouseMoved));
 }
 
 void SandboxLayer::OnUpdate(Timestep ts)
@@ -88,4 +89,13 @@ void SandboxLayer::OnImGuiRender()
 	ImGui::Begin("Controls");
 	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 	ImGui::End();
+}
+
+bool SandboxLayer::MouseMoved(GLCore::MouseMovedEvent& e)
+{
+	glm::vec2 coords = m_CameraController.ScreenToWorldCoords({ e.GetX(), e.GetY() }, { Application::Get().GetWindow().GetWidth(), Application::Get().GetWindow().GetHeight() });
+
+	LOG_INFO("X: {0}, Y: {1}", coords.x, coords.y);
+
+	return false;
 }

@@ -21,6 +21,9 @@ namespace GLCore::Utils {
 
 		float GetZoomLevel() const { return m_ZoomLevel; }
 		void SetZoomLevel(float level) { m_ZoomLevel = level; }
+
+		glm::vec2 ScreenToWorldCoords(const glm::vec2& coords, const glm::vec2& size);
+
 	private:
 		bool OnMouseScrolled(MouseScrolledEvent& e);
 		bool OnWindowResized(WindowResizeEvent& e);

@@ -3,6 +3,8 @@
 #include <GLCore.h>
 #include <GLCoreUtils.h>
 
+#include <GLCore/Events/MouseEvent.h>
+
 class SandboxLayer : public GLCore::Layer
 {
 public:
@@ -14,6 +16,10 @@ public:
 	virtual void OnEvent(GLCore::Event& event) override;
 	virtual void OnUpdate(GLCore::Timestep ts) override;
 	virtual void OnImGuiRender() override;
+
+private:
+	bool MouseMoved(GLCore::MouseMovedEvent& e);
+
 private:
 	GLCore::Utils::Shader* m_Shader;
 	GLCore::Utils::OrthographicCameraController m_CameraController;
